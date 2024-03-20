@@ -1,0 +1,32 @@
+<div class="container">
+    <form [formGroup]="adminLogin">
+        
+        <div class="row">
+            
+                <div class="col-6 m-auto mt-3">
+                   
+                    <div class="card">
+                        <div class="car-header">
+                            <h1 class="text-center">Vegitable store</h1>
+                        </div>
+                       <div class="card-body">
+                        <label class="form-label">Username</label>
+                    <input type="text" class=form-control placeholder="enter username" formControlName="username">
+                    <label class="form-label">password</label>
+                    <input type="password" class=form-control placeholder="enter password" formControlName="password">
+                       </div> 
+                    
+                    <div class="text-center">
+                        <button class="btn btn-success" type="submit" (click)="login()">login</button>
+                    </div>
+                   
+                </div>
+    
+            </div>
+    
+            </div>
+           
+    </form>
+   
+   
+</div>
