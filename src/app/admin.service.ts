@@ -21,4 +21,10 @@ export class AdminService {
     return this.http.post('http://localhost:4300/vegtable/addvegitable',data)
   }
   
+  editVegtables(id:any, data:any){
+    return this.http.put('http://localhost:4300/vegtable/updatevegtables/'+id,data)
+  }
+  deleteVegtables(id:any){
+    return this.http.delete('http://localhost:4300/vegtable/deletevegtable/'+id)
+  }
 }

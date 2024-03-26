@@ -1,6 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import { AdminService } from '../admin.service';
 import { Route, Router } from '@angular/router';
 
@@ -9,33 +14,73 @@ import { Route, Router } from '@angular/router';
   standalone: true,
   imports: [FormsModule, ReactiveFormsModule, CommonModule],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.css'
+  styleUrl: './home.component.css',
 })
 export class HomeComponent implements OnInit {
   vegitables!: FormGroup;
-  veg: any
-  constructor(private form: FormBuilder,
+  editVegForm!: FormGroup;
+  veg: any;
+  vid: any;
+  constructor(
+    private form: FormBuilder,
     private api: AdminService,
-    private router: Router) {
-
-  }
+    private router: Router
+  ) {}
   ngOnInit(): void {
     this.vegitables = this.form.group({
       productname: [''],
       quantity: [''],
       price: [''],
-      description: ['']
+      description: [''],
+    });
 
-    })
+    this.editVegForm = this.form.group({
+      productname: [''],
+      quantity: [''],
+      price: [''],
+      description: [''],
+    });
+
     this.api.getveg().subscribe((res: any) => {
       this.veg = res;
-      console.log(this.veg,'veg')
-    })
+      console.log(this.veg, 'veg');
+    });
   }
   Add() {
     this.api.add(this.vegitables.value).subscribe((res: any) => {
-      console.log('res', res)
-      this.router.navigate(['/view'])
-    })
+      console.log('res', res);
+      this.router.navigate(['/view']);
+    });
   }
+
+  editVeg(v: any) {
+    console.log(v, 'vvvvvvvvvvvvvv');
+    this.vid = v._id;
+    console.log(this.vid);
+
+    this.editVegForm.patchValue({
+      productname: v.productname,
+      quantity: v.quantity,
+      price: v.price,
+      description: v.description,
+    });
+  }
+
+  updateVeg() {
+    this.api
+      .editVegtables(this.vid, this.editVegForm.value)
+      .subscribe((res: any) => {
+        console.log(res, 'edit veg');
+      });
+    window.location.reload();
+  }
+  deleteVeg(d: any) {
+    let did = d._id;
+    console.log(did);
+    this.api.deleteVegtables(did).subscribe((res: any) => {
+      console.log(res);
+    });
+    window.location.reload();
+  }
+  
 }
