@@ -31,6 +31,8 @@ export class LoginComponent implements OnInit {
   login() {
     this.api.adminLogin(this.adminLogin.value).subscribe((res: any) => {
       console.log('res', res)
+      localStorage.setItem('admin', JSON.stringify(res.User))
+      localStorage.setItem('token',res.token)
       this.router.navigate(['/home'])
 
 
