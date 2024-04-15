@@ -21,6 +21,7 @@ export class HomeComponent implements OnInit {
   editVegForm!: FormGroup;
   veg: any;
   vid: any;
+  vimage!:File;
   constructor(
     private form: FormBuilder,
     private api: AdminService,
@@ -32,6 +33,7 @@ export class HomeComponent implements OnInit {
       quantity: [''],
       price: [''],
       description: [''],
+      photo:[''],
     });
 
     this.editVegForm = this.form.group({
@@ -39,17 +41,31 @@ export class HomeComponent implements OnInit {
       quantity: [''],
       price: [''],
       description: [''],
+      photo:[''],
     });
 
     this.api.getveg().subscribe((res: any) => {
       this.veg = res;
       console.log(this.veg, 'veg');
     });
+  
+  }
+  selectFile(r:any){
+      this.vimage=r.target.files[0]as File;
+      console.log(this.vimage,'photo')
   }
   Add() {
-    this.api.add(this.vegitables.value).subscribe((res: any) => {
+    let RegData = new FormData();
+    RegData.append('photo',this.vimage)
+    RegData.append('productname',this.vegitables.value.productname)
+    RegData.append('quantity',this.vegitables.value.quantity)
+    RegData.append('price',this.vegitables.value.price)
+    RegData.append('description',this.vegitables.value.description)
+
+
+    this.api.add(RegData).subscribe((res: any) => {
       console.log('res', res);
-      this.router.navigate(['/view']);
+      // this.router.navigate(['/view']);
     });
   }
 

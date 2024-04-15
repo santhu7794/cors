@@ -4,49 +4,87 @@
       <h1 class="text-center bg-primary">VegitableList</h1>
       <div class="col-6 m-auto">
         <label class="form-label">productname</label>
-        <input type="text" class="form-control" place holder="enter item name" formControlName="productname">
+        <input
+          type="text"
+          class="form-control"
+          place
+          holder="enter item name"
+          formControlName="productname"
+        />
         <label class="form-label">quantity</label>
-        <input type="text" class="form-control" place holder="quantity" formControlName="quantity">
+        <input
+          type="text"
+          class="form-control"
+          place
+          holder="quantity"
+          formControlName="quantity"
+        />
         <label class="form-label">Price</label>
-        <input type="number" class="form-control" place holder="Price" formControlName="price">
+        <input
+          type="number"
+          class="form-control"
+          place
+          holder="Price"
+          formControlName="price"
+        />
         <label class="form-label">description</label>
-        <input type="text" class="form-control" place holder="description" formControlName="description">
-
+        <input
+          type="text"
+          class="form-control"
+          place
+          holder="description"
+          formControlName="description"
+        />
+        <label class="form-label">photo</label>
+        <input
+          type="file"
+          class="form-control"
+          place
+          holder="description"
+          formControlName="photo"
+          (change)="selectFile($event)"
+        />
       </div>
-      <div class=" text-center">
-        <button class="btn btn-success" type="submit" (click)="Add()">Add</button>
+      <div class="text-center">
+        <button class="btn btn-success" type="submit" (click)="Add()">
+          Add
+        </button>
       </div>
     </div>
   </form>
-  <table class=" table  table-striped table-bordered ">
+  <table class="table table-striped table-bordered">
     <thead>
       <tr>
-
         <th>productname</th>
         <th>quantity</th>
         <th>price</th>
         <th>description</th>
         <th>Action</th>
-
+        <th>Photo</th>
       </tr>
-
     </thead>
     <tbody>
       <tr *ngFor="let p of veg">
-        <td>{{p.productname}}</td>
-        <td>{{p.quantity}}</td>
-        <td>{{p.price}}</td>
-        <td>{{p.description}}</td>
+        <td>{{ p.productname }}</td>
+        <td>{{ p.quantity }}</td>
+        <td>{{ p.price }}</td>
+        <td>{{ p.description }}</td>
+
         <td>
           <div class="text-primary text-center">
-           <a><i class="bi bi-pencil-square" data-bs-toggle="modal" data-bs-target="#myModal" (click)="editVeg(p)"></i></a> 
-          
-           <a><i class="bi bi-trash" (click)="deleteVeg(p)"></i></a>
+            <a
+              ><i
+                class="bi bi-pencil-square"
+                data-bs-toggle="modal"
+                data-bs-target="#myModal"
+                (click)="editVeg(p)"
+              ></i
+            ></a>
+
+            <a><i class="bi bi-trash" (click)="deleteVeg(p)"></i></a>
           </div>
-
-          
         </td>
-
+        <td><img src="{{p.photo}}"></td>
       </tr>
     </tbody>
   </table>
@@ -65,17 +103,54 @@
             <h1 class="text-center">VegitableList</h1>
             <div class="col-6 m-auto">
               <label class="form-label">productname</label>
-              <input type="text" class="form-control" place holder="enter item name" formControlName="productname">
+              <input
+                type="text"
+                class="form-control"
+                place
+                holder="enter item name"
+                formControlName="productname"
+              />
               <label class="form-label">quantity</label>
-              <input type="text" class="form-control" place holder="quantity" formControlName="quantity">
+              <input
+                type="text"
+                class="form-control"
+                place
+                holder="quantity"
+                formControlName="quantity"
+              />
               <label class="form-label">Price</label>
-              <input type="number" class="form-control" place holder="Price" formControlName="price">
+              <input
+                type="number"
+                class="form-control"
+                place
+                holder="Price"
+                formControlName="price"
+              />
               <label class="form-label">description</label>
-              <input type="text" class="form-control" place holder="description" formControlName="description">
-      
+              <input
+                type="text"
+                class="form-control"
+                place
+                holder="description"
+                formControlName="description"
+              />
+              <label class="form-label">photo</label>
+              <input
+                type="file"
+                class="form-control"
+                place
+                holder="description"
+                formControlName="photo"
+              />
             </div>
-            <div class=" text-center">
-              <button class="btn btn-success" type="submit" (click)="updateVeg()">Update</button>
+            <div class="text-center">
+              <button
+                class="btn btn-success"
+                type="submit"
+                (click)="updateVeg()"
+              >
+                Update
+              </button>
             </div>
           </div>
         </form>
