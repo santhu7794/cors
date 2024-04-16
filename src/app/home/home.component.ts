@@ -79,6 +79,7 @@ export class HomeComponent implements OnInit {
       quantity: v.quantity,
       price: v.price,
       description: v.description,
+      photo:v.photo
     });
   }
 
