@@ -43,4 +43,10 @@ export class AdminService {
       'http://localhost:4300/vegtable/deletevegtable/' + id,this.jwttoken()
     );
   }
+  forget(data:any){
+    return this.http.post('http://localhost:4300/vegtable/forgetpassword',data)
+  };
+  resetpassword(id:any,data:any){
+    return this.http.put('http://localhost:4300/vegtable/resetpassword'+id,data)
+  }
 }

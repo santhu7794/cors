@@ -46,7 +46,7 @@ export class HomeComponent implements OnInit {
 
     this.api.getveg().subscribe((res: any) => {
       this.veg = res;
-      console.log(this.veg, 'veg');
+      console.log(this.veg,'veg');
     });
   
   }
